@@ -1,0 +1,24 @@
+{
+  "name": "hexo-admin",
+  "version": "0.0.0",
+  "description": "Hexo Admin provides a dashboard for hexo blog systems.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teambition/hexo-admin"
+  },
+  "keywords": [
+    "hexo",
+    "admin",
+    "blog",
+    "dashboard"
+  ],
+  "author": "teambition",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teambition/hexo-admin/issues"
+  }
+}
