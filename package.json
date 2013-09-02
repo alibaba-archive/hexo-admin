@@ -20,5 +20,10 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/teambition/hexo-admin/issues"
+  },
+  "bin": "./bin/hexo-admin",
+  "dependencies": {
+    "express": "*",
+    "moment": "*"
   }
 }
