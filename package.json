@@ -4,7 +4,7 @@
   "description": "Hexo Admin provides a dashboard for hexo blog systems.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,8 @@
   "bin": "./bin/hexo-admin",
   "dependencies": {
     "express": "*",
-    "moment": "*"
+    "moment": "*",
+    "should": "~1.2.2",
+    "mocha": "~1.12.1"
   }
 }

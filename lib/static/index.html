@@ -1,61 +1,68 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="hexo-admin">
   <head>
     <meta charset="utf-8" />
     <link href="/admin/css/teambition-ui.css" rel="stylesheet" />
+    <link href="/admin/css/style.css" rel="stylesheet" />
     <script src="/admin/js/jquery.js"></script>
     <script src="/admin/js/jquery.scrollto.js"></script>
     <script src="/admin/js/angular.js"></script>
+    <script src="/admin/js/showdown.js"></script>
     <script src="/admin/hexo-admin.js"></script>
     <title>Hexo-admin</title>
-    <style>
-      .content{display:none;}
-      textarea{resize:none;width:100%;height:500px}
-      input{width:60%}
-      time{display:block;}
-      .title:hover{cursor:pointer;opacity:.6;}
-      .ctrl{display:none;}
-      .postlist li:nth-child(2n){background:whitesmoke;}
-      .postlist li{padding:5px 0px;}
-    </style>
   </head>
   <body ng-controller="post">
+    <header class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <ul class="nav left-side">
+          <li>
+              <a href="/admin">Hexo-admin</a>
+          </li>
+          <li>
+            <h4 class="title">
+              <span class="header" ng-click="show(title)">{{title.title}}</span>
+              <span ng-hide="!title.modifyed">--unsaved</span>
+              <small><time datetime="{{title.date}}">{{title.date}}</time></small>
+            </h4>
+          </li>
+          <li>
+            <div class="btn-group" ng-hide="!title.show">
+              <button class="btn btn-mini" ng-click="modify(title)">Modify</button>
+              <button class="btn btn-warning btn-mini" ng-click="del(title)">Delete</button>
+            </div>
+          </li>
+      </ul>
+        <ul class="nav right-side">
+          <li><a ng-click="deploy()">{{deployState}}</a></li>
+          <li><a ng-click="slideup()">hide</a></li>
+          <li><a href="/">preview</a></li>
+        </ul>
+      </div>
+    </header>
     <div class="container">
       <div class="row">
-        <div class="span3">
-          <div class="affix">
-            <h3>hexo-admin</h3>
-            <ul class="nav nav-list">
-              <li><a ng-click="slideup()">hide all article</a></li>
-              <li><a href="/">preview blog</a></li>
-              <li><a ng-click="deploy()">{{deployState}}</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="span9">
-          <h3>Post List</h3>
-          <ul class="postlist">
-            <li>
+      <ul class="postlist span12">
+        <li>
               <input ng-model="newTitle" placeholder="Title"></input>
               <button ng-click="create()">Create Post</button>
-            </li>
-            <li id="{{post.id}}" ng-repeat="post in posts">
-              <h4 ng-click="show(post)" class="title">
-                {{post.title}}
-                <span ng-hide="!post.modifyed">--unsaved</span>
-                <small><time datetime="{{post.date}}">{{post.date}}</time></small>
-              </h4>
-              <div class="content">
-                <div class="btn-group">
-                  <button class="btn btn-mini" ng-click="modify(post)">Modify</button>
-                  <button class="btn btn-warning btn-mini" ng-click="del(post)">Delete</button>
-                </div>
-                <textarea ng-change="change(post)" ng-model="post.content"></textarea>
-              </div>
-             </li>
-          </ul>
-        </div>
-      </div>
+        </li>
+        <li id="{{post.id}}" ng-repeat="post in posts">
+          <h4 class="title">
+            <span class="header" ng-click="show(post)">{{post.title}}</span>
+            <span ng-hide="!post.modifyed">--unsaved</span>
+            <div class="btn-group" ng-hide="!post.show">
+              <button class="btn btn-mini" ng-click="modify(post)">Modify</button>
+              <button class="btn btn-warning btn-mini" ng-click="del(post)">Delete</button>
+            </div>
+            <small><time datetime="{{post.date}}">{{post.date}}</time></small>
+          </h4>
+          <div class="content clearfix">
+            <textarea class="input" ng-change="change(post)" ng-model="post.content"></textarea>
+            <div class="output" ng-bind-html-unsafe="post.content|markdown"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
     </div>
   </body>
 </html>

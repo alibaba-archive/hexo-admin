@@ -1,0 +1,11 @@
+.content{display:none;}
+textarea{resize:none;width:100%;height:500px;}
+time{display:block;}
+.title .header:hover{cursor:pointer;opacity:.6;}
+.title{height:50px;margin:0;padding-top:10px;}
+.ctrl{display:none;}
+.postlist li:nth-child(2n){background:whitesmoke;}
+.postlist li{padding:0px;}
+.input{width:50%;float: left;}
+.output{width:50%;float:right;}
+body{margin-top:50px;}
