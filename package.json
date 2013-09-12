@@ -1,6 +1,6 @@
 {
   "name": "hexo-admin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Hexo Admin provides a dashboard for hexo blog systems.",
   "main": "lib/index.js",
   "scripts": {

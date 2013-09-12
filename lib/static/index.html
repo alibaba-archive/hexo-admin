@@ -1,68 +1,84 @@
 <!doctype html>
 <html ng-app="hexo-admin">
-  <head>
-    <meta charset="utf-8" />
-    <link href="/admin/css/teambition-ui.css" rel="stylesheet" />
-    <link href="/admin/css/style.css" rel="stylesheet" />
-    <script src="/admin/js/jquery.js"></script>
-    <script src="/admin/js/jquery.scrollto.js"></script>
-    <script src="/admin/js/angular.js"></script>
-    <script src="/admin/js/showdown.js"></script>
-    <script src="/admin/hexo-admin.js"></script>
-    <title>Hexo-admin</title>
-  </head>
-  <body ng-controller="post">
-    <header class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <ul class="nav left-side">
-          <li>
-              <a href="/admin">Hexo-admin</a>
-          </li>
-          <li>
-            <h4 class="title">
-              <span class="header" ng-click="show(title)">{{title.title}}</span>
-              <span ng-hide="!title.modifyed">--unsaved</span>
-              <small><time datetime="{{title.date}}">{{title.date}}</time></small>
-            </h4>
-          </li>
-          <li>
-            <div class="btn-group" ng-hide="!title.show">
-              <button class="btn btn-mini" ng-click="modify(title)">Modify</button>
-              <button class="btn btn-warning btn-mini" ng-click="del(title)">Delete</button>
-            </div>
-          </li>
-      </ul>
-        <ul class="nav right-side">
-          <li><a ng-click="deploy()">{{deployState}}</a></li>
-          <li><a ng-click="slideup()">hide</a></li>
-          <li><a href="/">preview</a></li>
-        </ul>
+<head>
+<meta charset="utf-8" />
+<link href="/admin/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="/admin/css/style.css" rel="stylesheet" />
+<link href="/admin/md/style.css" rel="stylesheet" />
+<script src="/admin/bower_components/jquery/jquery.js"></script>
+<script src="/admin/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/admin/js/jquery.scrollto.js"></script>
+<script src="/admin/js/jquery.markitup.js"></script>
+<script src="/admin/md/set.js"></script>
+<script src="/admin/js/angular.js"></script>
+<script src="/admin/js/showdown.js"></script>
+<script src="/admin/hexo-admin.js"></script>
+<title>Hexo-admin</title>
+</head>
+<body ng-controller="post">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a ng-hide="title" class="navbar-brand" href="/admin">Hexo-admin</a>
+  </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav navbar-left">
+      <li>
+      <h4 class="title">
+        <span class="header" ng-click="show(title)">{{title.title}}</span>
+        <span ng-hide="!title.modifyed">--unsaved</span>
+        <small><time datetime="{{title.date}}">{{title.date}}</time></small>
+      </h4>
+      </li>
+      <li>
+      <div class="btn-group" ng-hide="!title.show">
+        <button class="btn btn-default navbar-btn" ng-click="modify(title)">Modify</button>
+        <button class="btn btn-warning navbar-btn" ng-click="del(title)">Delete</button>
       </div>
-    </header>
-    <div class="container">
-      <div class="row">
-      <ul class="postlist span12">
-        <li>
-              <input ng-model="newTitle" placeholder="Title"></input>
-              <button ng-click="create()">Create Post</button>
-        </li>
-        <li id="{{post.id}}" ng-repeat="post in posts">
-          <h4 class="title">
-            <span class="header" ng-click="show(post)">{{post.title}}</span>
-            <span ng-hide="!post.modifyed">--unsaved</span>
-            <div class="btn-group" ng-hide="!post.show">
-              <button class="btn btn-mini" ng-click="modify(post)">Modify</button>
-              <button class="btn btn-warning btn-mini" ng-click="del(post)">Delete</button>
-            </div>
-            <small><time datetime="{{post.date}}">{{post.date}}</time></small>
-          </h4>
-          <div class="content clearfix">
-            <textarea class="input" ng-change="change(post)" ng-model="post.content"></textarea>
-            <div class="output" ng-bind-html-unsafe="post.content|markdown"></div>
-          </div>
-        </li>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a ng-click="slideup()">Hide</a></li>
+      <li><a href="/">Preview</a></li>
+      <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown">Hexo<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a ng-click="deploy()">{{deployState}}</a></li>
       </ul>
+      </li>
+    </ul>
+    <form class="navbar-form navbar-right" role="search">
+      <div class="form-group">
+        <input ng-model="newTitle" type="text" class="form-control" placeholder="Title">
+      </div>
+      <button ng-click="create()" class="btn btn-default">Create</button>
+    </form>
+  </div>
+</nav>
+<div class="containner">
+  <ul class="postlist list-unstyled">
+    <li id="{{post.id}}" ng-repeat="post in posts | filter:newTitle">
+    <h4 class="title">
+      <span class="header" ng-click="show(post)">{{post.title}}</span>
+      <span ng-hide="!post.modifyed">--unsaved</span>
+      <div class="btn-group btn-group-xs" ng-hide="!post.show">
+        <button class="btn" ng-click="modify(post)">Modify</button>
+        <button class="btn btn-warning" ng-click="del(post)">Delete</button>
+      </div>
+      <small><time datetime="{{post.date}}">{{post.date}}</time></small>
+    </h4>
+    <div class="content clearfix">
+      <textarea class="input" ng-change="change(post)" ng-model="post.content"></textarea>
+      <div class="output" ng-bind-html-unsafe="post.content|markdown"></div>
     </div>
-    </div>
-  </body>
+    </li>
+  </ul>
+</div>
+</body>
 </html>
