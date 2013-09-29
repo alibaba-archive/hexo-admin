@@ -75,7 +75,27 @@
     </h4>
     <div class="content clearfix">
       <textarea class="input" ng-change="change(post)" ng-model="post.content"></textarea>
-      <div class="output" ng-bind-html-unsafe="post.content|markdown"></div>
+      <div class="output">
+        <div class="tools">
+          <div class="image">
+            <input class="imgFile" type="file"></input>
+            <a ng-click="aImage(post)">添加图片</a>
+          </div>
+          <div class="tags">tags:
+            <span ng-repeat="tag in post.tags">{{tag}}
+              <a ng-click="rTag(post,tag)">删除</a>
+            </span>
+            <input type="text" ng-model="post.tag"></input>
+            <a ng-click="aTag(post)">添加</a>
+          </div>
+          <div class="cover">Cover:
+            <img ng-src="/header/{{post.header}}"></img>
+            <input class="headerImg" type="file" name="header"></input>
+            <a ng-click="aHeader(post)">替换</a>
+          </div>
+        </div>
+        <div ng-bind-html-unsafe="post.content|markdown"></div>
+      </div>
     </div>
     </li>
   </ul>
