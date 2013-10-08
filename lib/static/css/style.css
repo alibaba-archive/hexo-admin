@@ -12,3 +12,5 @@ time{display:block;}
 .containner{margin:0px 10px;}
 body{margin-top:51px;}
 a:hover{cursor:pointer;}
+.output img{height:30px;width:80%}
+.output img:hover {height:100%;}
