@@ -53,8 +53,7 @@
       </ul>
       </li>
     </ul>
-    <form class="navbar-form navbar-right" role="search">
-      <div class="form-group">
+    <form class="navbar-form navbar-right" role="search"> <div class="form-group">
         <input ng-model="newTitle" type="text" class="form-control" placeholder="Title">
       </div>
       <button ng-click="create()" class="btn btn-default">Create</button>
@@ -81,16 +80,23 @@
             <input class="imgFile" type="file"></input>
             <a ng-click="aImage(post)">添加图片</a>
           </div>
-          <div class="tags">tags:
-            <span ng-repeat="tag in post.tags">{{tag}}
-              <a ng-click="rTag(post,tag)">删除</a>
+          <hr />
+          <div class="tags">
+            <span ng-repeat="tag in tags">
+              <a ng-click="aTag(post,tag)">{{tag}}</a>
+              <a ng-click="rmTag(tag)">删除</a>
             </span>
-            <input type="text" ng-model="post.tag"></input>
-            <a ng-click="aTag(post)">添加</a>
+            <input type="text" ng-model="post.addtag"></input>
+            <a ng-click="addTag(post)">添加</a>
+            <hr />
+            <span ng-repeat="tag in post.tags">
+              <a ng-click="rTag(post,tag)">{{tag}}</a>
+            </span>
           </div>
-          <div class="cover">Cover:
+          <hr />
+          <div class="cover">
             <img ng-src="/header/{{post.header}}"></img>
-            <input class="headerImg" type="file" name="header"></input>
+            <input type="file" name="header"></input>
             <a ng-click="aHeader(post)">替换</a>
           </div>
         </div>
