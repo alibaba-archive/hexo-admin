@@ -22,11 +22,13 @@
     "url": "https://github.com/teambition/hexo-admin/issues"
   },
   "bin": "./bin/hexo-admin",
-  "dependencies": {
-    "scp": "*",
-    "express": "*",
-    "moment": "*",
+  "devDependencies": {
     "should": "~1.2.2",
     "mocha": "~1.12.1"
+  },
+  "dependencies": {
+    "express": "*",
+    "moment": "*",
+    "gm":"*"
   }
 }
