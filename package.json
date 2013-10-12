@@ -23,6 +23,7 @@
   },
   "bin": "./bin/hexo-admin",
   "dependencies": {
+    "scp": "*",
     "express": "*",
     "moment": "*",
     "should": "~1.2.2",

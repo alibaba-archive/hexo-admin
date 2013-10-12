@@ -44,14 +44,16 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a ng-click="slideup()">Hide</a></li>
-      <li><a href="/">Preview</a></li>
-      <li class="dropdown">
+      <li><a ng-click="slideup()">收起</a></li>
+      <li><a target="_blank" href="http://192.168.0.73:5003">预览</a></li>
+      <li><a ng-click="deploy()">{{deployState}}</a></li>
+      <!--<li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown">Hexo<b class="caret"></b></a>
       <ul class="dropdown-menu">
+        <li><a ng-click="generate()">{{generateState}}</a></li>
         <li><a ng-click="deploy()">{{deployState}}</a></li>
       </ul>
-      </li>
+      </li>-->
     </ul>
     <form class="navbar-form navbar-right" role="search"> <div class="form-group">
         <input ng-model="newTitle" type="text" class="form-control" placeholder="Title">
@@ -76,9 +78,11 @@
       <textarea class="input" ng-change="change(post)" ng-model="post.content"></textarea>
       <div class="output">
         <div class="tools">
+          <input class="changeTitle" ng-change="change(post)" ng-model="post.title"></input>
           <div class="image">
             <input class="imgFile" type="file"></input>
             <a ng-click="aImage(post)">添加图片</a>
+            <div>{{post.imageAlert}}</div>
           </div>
           <hr />
           <div class="tags">
@@ -96,7 +100,7 @@
           <hr />
           <div class="cover">
             <img ng-src="/header/{{post.header}}"></img>
-            <input type="file" name="header"></input>
+            <input type="file" class="headerImg" name="header"></input>
             <a ng-click="aHeader(post)">替换</a>
           </div>
         </div>
