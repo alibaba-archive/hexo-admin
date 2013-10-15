@@ -1,0 +1,27 @@
+.output > p {
+  margin: 10px 0;
+  height: 54px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.output {
+  font-size: 16px;
+  margin-top: 10px;
+  line-height: 1.7em;
+}
+.output p {
+  margin: 1.5em 0;
+}
+.output h3 {
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1.1em;
+}
+.output blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 2px solid #d9d9d9;
+}
