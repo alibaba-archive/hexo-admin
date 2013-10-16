@@ -1,0 +1,17 @@
+.content{display:none;padding:10px;}
+textarea{width:100%;height:500px;}
+time{display:block;}
+.title .header:hover{cursor:pointer;opacity:.6;}
+.title{height:50px;margin:0;padding-top:10px;}
+.ctrl{display:none;}
+.postlist>li:nth-child(2n){background:whitesmoke;}
+.postlist>li{padding:0px;}
+.output{width:49%;float:left;background:white;height:536px;overflow:auto}
+.output img{height:30px;}
+.markItUp{width:49%;float:right;}
+.containner{margin:0px 10px;}
+body{margin-top:51px;}
+a:hover{cursor:pointer;}
+.output img{height:30px;width:80%}
+.output img:hover {height:100%;}
+.changeTitle{width:100%}
